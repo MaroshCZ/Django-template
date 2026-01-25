@@ -18,7 +18,20 @@ from django.contrib import admin
 from django.urls import path
 from apartments import views
 
+from apartments import views
+
 urlpatterns = [
-    path('', views.home, name='home'),
     path('admin/', admin.site.urls),
+    
+    # Pages
+    path('', views.home, name='home'),
+    path('apartments/', views.apartment_list, name='apartment_list'),
+    
+    # API Endpoints
+    path('api/offers', views.api_offers, name='api_offers'),
+    path('api/offers-map', views.api_offers_map, name='api_offers_map'),
+    path('api/districts', views.api_districts, name='api_districts'),
+    path('api/settings', views.api_settings, name='api_settings'),
+    path('api/status', views.api_status, name='api_status'),
+    path('api/stream', views.api_stream, name='api_stream'),
 ]

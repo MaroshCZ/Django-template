@@ -1,11 +1,4 @@
 from django.shortcuts import render
-
-
-def home(request):
-    """Simple hello world homepage"""
-    return render(request, 'home.html')
-
-from django.shortcuts import render
 from django.http import JsonResponse, StreamingHttpResponse
 from .models import Apartment, District
 import json
