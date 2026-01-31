@@ -52,6 +52,19 @@ services:
         condition: service_healthy
     networks:
       - app_network
+  
+  tailwind:
+    build: ./backend  # Použije stejný Dockerfile jako Django (kde už je curl stáhnutá binárka tailwindu)
+    container_name: najmovac_tailwind
+    tty: true
+    stdin_open: true
+    # -i (input): vstupní CSS
+    # -o (output): kam vyplivnout hotové CSS
+    # --watch: NEUKONČOVAT PROCES, ale čekat na změny (v produkci změnit na --minify)
+    command: python manage.py tailwind watch
+    
+    volumes:
+      - ./backend:/app  # <-- Tohle je nutné pro propsání změn do kontejneru
      
 
 volumes:

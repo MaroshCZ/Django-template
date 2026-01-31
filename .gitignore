@@ -1,3 +1,6 @@
+# Basic python .gitignore template (from github/gitignore)
+*tailwind.min.css
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

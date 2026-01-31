@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apartments',
+    'django_tailwind_cli',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles' # Pro produkci (manage.py collectstatic)
+
+TAILWIND_CLI_VERSION = "4.1.3"  # Pin version
+TAILWIND_CLI_AUTOMATIC_DOWNLOAD = True  # Use pre-installed CLI and change to False for produciton
+TAILWIND_CLI_DIST_CSS = "css/tailwind.min.css"
+TAILWIND_CLI_SRC_CSS = BASE_DIR / "static/css/input.css"

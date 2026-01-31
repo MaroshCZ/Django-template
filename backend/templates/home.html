@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 {% load static %}
+{% load tailwind_cli %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Django Hello World</title>
-    <link rel="stylesheet" href="/static/css/input.css">
+    {% tailwind_css %}
     <script src="{% static 'js/vendor/htmx.min.js' %}" defer></script>
     <script src="{% static 'js/vendor/alpine.min.js' %}" defer></script>
 </head>
