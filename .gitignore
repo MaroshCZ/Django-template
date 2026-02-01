@@ -1,5 +1,6 @@
 # Basic python .gitignore template (from github/gitignore)
 *tailwind.min.css
+.django_tailwind_cli/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

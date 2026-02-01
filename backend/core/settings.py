@@ -85,11 +85,11 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_DB', 'najmovac_db'),
-        'USER': os.getenv('POSTGRES_USER', 'postgres'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'postgres123'),
-        'HOST': os.getenv('POSTGRES_HOST', 'db'),
-        'PORT': os.getenv('POSTGRES_PORT', '5432'),
+        'NAME': os.getenv('POSTGRES_DB'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('POSTGRES_HOST'),
+        'PORT': os.getenv('POSTGRES_PORT'),
     }
 }
 
@@ -128,11 +128,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles' # Pro produkci (manage.py collectstatic)
 
-TAILWIND_CLI_VERSION = "4.1.3"  # Pin version
-TAILWIND_CLI_AUTOMATIC_DOWNLOAD = True  # Use pre-installed CLI and change to False for produciton
-TAILWIND_CLI_DIST_CSS = "css/tailwind.min.css"
-TAILWIND_CLI_SRC_CSS = BASE_DIR / "static/css/input.css"
+# Django Tailwind CLI Configuration
+TAILWIND_CLI_VERSION = "2.7.5"  # If DaisyUI used, you need to set version of it, not tailwind.. (https://github.com/dobicinaitis/tailwind-cli-extra/releases)
+TAILWIND_CLI_AUTOMATIC_DOWNLOAD = True  # Use pre-installed CLI and change to False for production
+# Paths must be absolute from STATICFILES_DIRS[0] for django-tailwind-cli to find them
+TAILWIND_CLI_SRC_CSS =  "css/input.css" #custom css
+TAILWIND_CLI_DIST_CSS =  "css/style.css" #output css
+TAILWIND_CLI_USE_DAISY_UI = True

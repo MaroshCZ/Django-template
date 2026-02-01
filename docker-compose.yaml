@@ -1,9 +1,8 @@
-
 services:
   # Scraper Service
   scraper:
     build: ./backend
-    container_name: najmovac_scraper
+    container_name: django_scraper
     restart: always
     env_file: .env
     command: python manage.py run_scraper
@@ -18,7 +17,7 @@ services:
   # PostgreSQL Database
   db:
     image: postgres:15-alpine
-    container_name: najmovac_db
+    container_name: postgres_db
     env_file: .env
     restart: always
     ports:
@@ -26,17 +25,17 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
       interval: 5s
       timeout: 5s
       retries: 5
     networks:
       - app_network
 
-  # Backend (Django)
+  # Backend (Django) with Tailwind hot-reload
   backend:
     build: ./backend
-    container_name: najmovac_backend
+    container_name: django_backend
     restart: unless-stopped
     env_file: .env
     command: >
@@ -52,25 +51,22 @@ services:
         condition: service_healthy
     networks:
       - app_network
-  
+  # Tailwind service is no longer needed - now integrated with backend via 'tailwind runserver'
   tailwind:
-    build: ./backend  # Použije stejný Dockerfile jako Django (kde už je curl stáhnutá binárka tailwindu)
-    container_name: najmovac_tailwind
+    build: ./backend
+    container_name: django_tailwind
     tty: true
     stdin_open: true
-    # -i (input): vstupní CSS
-    # -o (output): kam vyplivnout hotové CSS
-    # --watch: NEUKONČOVAT PROCES, ale čekat na změny (v produkci změnit na --minify)
-    command: python manage.py tailwind watch
-    
+    command: .django_tailwind_cli/tailwindcss-extra-linux-x64-2.7.5 -i ./css/input.css -o ./static/css/style.css --watch
     volumes:
-      - ./backend:/app  # <-- Tohle je nutné pro propsání změn do kontejneru
-     
+      - ./backend:/app
+    networks:
+      - app_network
 
 volumes:
   postgres_data:
 
+
 networks:
   app_network:
     driver: bridge
-

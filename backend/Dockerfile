@@ -1,35 +1,35 @@
-# 1. Použijeme stabilní a lehké prostředí Pythonu 3.12
+# 1. Use a stable and lightweight Python 3.12 environment
 FROM python:3.12-slim
 
-# 2. Nastavíme proměnné, aby Python nebyl "ukecaný" a hned vypisoval logy
+# 2. Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# 3. Instalace systémových závislostí
-# Potřebujeme libpq-dev pro Postgres a gcc pro kompilaci některých Python knihoven
+# 3. Install system dependencies
+# We need libpq-dev for Postgres and gcc for compiling some Python libraries
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     gcc \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# 4. Nastavení pracovního adresáře v kontejneru
+# 4. Set the working directory in the container
 WORKDIR /app
 
-# 5. Instalace Python závislostí (děláme to před kopírováním kódu kvůli cache)
+# 5. Install Python dependencies 
 COPY requirements.txt .
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-# 6. Kopírování zbytku projektu
+# 6. Copy the rest of the project
 COPY . .
 
-# 7. Vytvoření uživatele pro bezpečné běhání (ne jako root)
+# 7. Create a user for safe execution (not running as root)
 RUN useradd -m -u 1000 django && chown -R django:django /app
 USER django
 
-# 8. Port, na kterém poběží web
+# 8. Port on which the web app will run
 EXPOSE 8000
 
-# Příkaz (CMD) tady nedáváme, protože ho definujeme v docker-compose.yml 
-# (každý kontejner spouští něco jiného)
+# We do not define the command (CMD) here, because it is set in docker-compose.yml
+# (each container runs something different)

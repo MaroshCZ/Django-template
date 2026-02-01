@@ -1,125 +1,135 @@
+/* ZMĚNA: Syntaxe pro Tailwind v3 */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.container {
-    background: white;
-    border-radius: 20px;
-    padding: 50px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    max-width: 600px;
-    width: 100%;
-    text-align: center;
-}
-
-h1 {
-    color: #667eea;
-    font-size: 3em;
-    margin-bottom: 20px;
-    animation: fadeInDown 1s ease;
-}
-
-.success {
-    color: #4CAF50;
-    font-size: 1.3em;
-    margin-bottom: 30px;
-    font-weight: 500;
-    animation: fadeIn 1.5s ease;
-}
-
-.info-box {
-    background: #f5f7fa;
-    border-radius: 10px;
-    padding: 25px;
-    margin: 30px 0;
-    text-align: left;
-    animation: fadeInUp 2s ease;
-}
-
-.info-box h2 {
-    color: #333;
-    margin-bottom: 15px;
-    font-size: 1.3em;
-}
-
-.info-box ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.info-box li {
-    padding: 8px 0;
-    font-size: 1.1em;
-    color: #555;
-}
-
-.links {
-    margin-top: 30px;
-}
-
-.btn {
-    display: inline-block;
-    background: #667eea;
-    color: white;
-    padding: 15px 30px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1em;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-}
-
-.btn:hover {
-    background: #764ba2;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(118, 75, 162, 0.4);
-}
-
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
+@layer base {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
     }
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
+@layer components {
+    .container {
+        background: white;
+        border-radius: 20px;
+        padding: 50px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        max-width: 600px;
+        width: 100%;
+        text-align: center;
     }
-    to {
-        opacity: 1;
+
+    h1 {
+        color: #bb208f;
+        font-size: 3em;
+        margin-bottom: 20px;
+        animation: fadeInDown 1s ease;
+    }
+
+    .success {
+        color: #4CAF50;
+        font-size: 1.3em;
+        margin-bottom: 30px;
+        font-weight: 500;
+        animation: fadeIn 1.5s ease;
+    }
+
+    .info-box {
+        background: #f5f7fa;
+        border-radius: 10px;
+        padding: 25px;
+        margin: 30px 0;
+        text-align: left;
+        animation: fadeInUp 2s ease;
+    }
+
+    .info-box h2 {
+        color: #333;
+        margin-bottom: 15px;
+        font-size: 1.3em;
+    }
+
+    .info-box ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .info-box li {
+        padding: 8px 0;
+        font-size: 1.1em;
+        color: #555;
+    }
+
+    .links {
+        margin-top: 30px;
+    }
+
+    .btn {
+        display: inline-block;
+        background: #667eea;
+        color: white;
+        padding: 15px 30px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.1em;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn:hover {
+        background: #764ba2;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(118, 75, 162, 0.4);
     }
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+@layer utilities {
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 }
 
@@ -127,11 +137,11 @@ h1 {
     .container {
         padding: 30px 15px;
     }
-    
+
     h1 {
         font-size: 2em;
     }
-    
+
     .success {
         font-size: 1.1em;
     }

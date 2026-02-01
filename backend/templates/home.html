@@ -2,6 +2,7 @@
 {% load static %}
 {% load tailwind_cli %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,9 @@
     <script src="{% static 'js/vendor/htmx.min.js' %}" defer></script>
     <script src="{% static 'js/vendor/alpine.min.js' %}" defer></script>
 </head>
+
 <body>
+    {% block content %}
     <div class="container">
         <h1>🎉 Hello World!</h1>
         <p class="success">Django is working perfectly! 🚀</p>
@@ -26,14 +29,15 @@
             <a href="/admin/" class="btn">Go to Admin Panel →</a>
         </div>
 
-    <div x-data="{ message: 'Klikni na mě (Alpine)' }">
-    <button @click="alert('Alpine běží!')" x-text="message" class="bg-blue-500 text-white p-2 rounded"></button>
-    </div>
+        <div x-data="{ message: 'Klikni na mě (Alpine)' }">
+            <button @click="alert('Alpine běží!')" x-text="message" class="bg-blue-300 text-white p-2 rounded"></button>
+        </div>
 
-    <button hx-get="/test" class="bg-green-500 text-white p-2 rounded mt-2">
-        Test HTMX Request
-    </button>
+        <button hx-get="/test" class="bg-blue-500 text-white p-2 rounded mt-2">
+            Test HTMX Request
+        </button>
     </div>
-    
+    {% endblock %}
 </body>
+
 </html>
